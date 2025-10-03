@@ -61,7 +61,6 @@
     50%{opacity:0.5;}
   }
 
-  /* ELEMENTOS DE PUNTAJE Y VIDAS: posiciones absolutas respecto al canvas */
   #puntaje { position: absolute; top: 10px; left: calc(50% - 300px); color: white; font-size: 20px; }
   #vidas { position: absolute; top: 10px; right: calc(50% - 300px); color: white; font-size: 20px; }
   #puntajeMaximo { position: absolute; top: 40px; left: calc(50% - 300px); color: #ffcc00; font-size: 16px; }
@@ -92,7 +91,6 @@
 <canvas id="gameCanvas" width="600" height="800"></canvas>
 
 <script>
-// ======== VARIABLES ==========
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 600;
@@ -110,7 +108,6 @@ let fondoY = 0;
 let gameLoopId = null;
 let jugando = false;
 
-// ======== IMÁGENES Y SONIDOS ==========
 const imgAuto = new Image(); imgAuto.src = 'auto.png'; let autoCargado=false; imgAuto.onload=()=>{autoCargado=true;};
 const imgGatito = new Image(); imgGatito.src = 'gatito.png';
 const imgAtun = new Image(); imgAtun.src = 'atun.png';
@@ -120,16 +117,13 @@ const sonidoGatito = new Audio('sonido_gatito.wav');
 const sonidoAtun = new Audio('sonido_atun.wav');
 const sonidoFondo = new Audio('musica_fondo.wav'); sonidoFondo.loop=true; sonidoFondo.volume=0.5;
 
-// ======== CONTROLES ========
 let izquierda=false, derecha=false;
 document.addEventListener('keydown', e => { if(e.key==='ArrowLeft') izquierda=true; if(e.key==='ArrowRight') derecha=true; });
 document.addEventListener('keyup', e => { if(e.key==='ArrowLeft') izquierda=false; if(e.key==='ArrowRight') derecha=false; });
 
-// ======== PUNTAJE MÁXIMO ==========
 let puntajeMax = sessionStorage.getItem('puntajeMax') ? parseInt(sessionStorage.getItem('puntajeMax')) : 0;
 document.getElementById('puntajeMaximo').innerText = 'Máximo alcanzado: ' + puntajeMax;
 
-// ======== FUNCIONES DE JUEGO ==========
 function crearObjetos() {
   if(Math.random() < 0.02) gatitos.push({ x: Math.random()*(canvas.width-60), y:-60, width:60, height:60 });
   if(Math.random() < 0.015) atun.push({ x: Math.random()*(canvas.width-60), y:-60, width:60, height:60 });
@@ -230,7 +224,6 @@ function loop(){
   gameLoopId=requestAnimationFrame(loop);
 }
 
-// ====== BOTÓN INICIAR ======
 document.getElementById('btnComenzar').addEventListener('click', ()=>{
   document.getElementById('pantallaInicio').style.display='none';
   sonidoFondo.play().catch(()=>{});
