@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jueguito para Juli con amor</title>
+<title>Jueguito para Juli</title>
 <style>
   body {
     margin: 0;
@@ -148,11 +148,9 @@ function actualizar() {
     g.y += velocidadFondo;
     if(colision(auto,g)){
       contadorGatitos++;
-      let puntos = (contadorGatitos===22)?12:10;
-      puntaje += puntos;
+      puntaje += 10;
       sonidoGatito.play().catch(()=>{});
       gatitos.splice(i,1);
-      if(puntaje===222) alert('¡Has conseguido ser el mejor pololo del mundo! (y algo más) Feliz día, te amo');
     }
     if(g.y>canvas.height) gatitos.splice(i,1);
   });
